@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import TodoItem from './components/TodoItem';
+import TodoForm from './components/TodoForm';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -24,7 +25,7 @@ function App() {
   function deleteTodo(id) {
     console.log(id)
     const filteredTodos = todos.filter((todo) => {
-      return todo.id !==id
+      return todo.id !== id
     })
 
     setTodos(filteredTodos);
@@ -35,6 +36,7 @@ function App() {
       <h1>To-Do App</h1>
       <p>{todos.length}</p>
       <pre>{JSON.stringify(todos, null, 2)}</pre>
+      {/* Todo List */}
       <ul>
         {todos.map((todo) => (
           <TodoItem
@@ -47,25 +49,10 @@ function App() {
           />
         ))}
       </ul>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)} />
-      <button
-      onClick={() => {
-        setTodos([
-          ...todos,
-          {
-            id: Date.now(),
-            text: input,
-            completed: false,
-          },
-        ])
-
-        setInput('')
-      }}>
-        Add To-Do Item
-      </button>
+      {/* End Todo List */}
+      {/* TodoForm */}
+      <TodoForm />
+      {/* End TodoForm */}
     </div>
   )
 }
